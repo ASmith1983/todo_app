@@ -7,7 +7,7 @@ import Todo from "../../models/todo";
 
 // Setting up CRUD.. note about promise<void> it may be used to create future<void> objects which have no value. In addition, a promise<void> can be constructed from a promise<T> where T is any type. This allows a promise<void> to be used by code which only needs to be able to renege on a promise and not fulfill it.
 
-const getTodos =async (req: Request, res: Response): Promise<void> => {
+const getTodos = async (req: Request, res: Response): Promise<void> => {
    try{
     const todos: ITodo[] = await Todo.find()
     res.status(200).json({ todos})
@@ -16,7 +16,7 @@ const getTodos =async (req: Request, res: Response): Promise<void> => {
       }
 }
 
-const addTodo =async (req: Request, res: Response): Promise<void> => {
+const addTodo = async (req: Request, res: Response): Promise<void> => {
    try {
     const body = req.body as Pick<ITodo, "name" | "description" | "status">
 
@@ -37,7 +37,7 @@ const addTodo =async (req: Request, res: Response): Promise<void> => {
    }
 }
 
-const updateTodo =async (req:Request, res: Response): Promise<void> => {
+const updateTodo = async (req:Request, res: Response): Promise<void> => {
    try{
     const{ params: { id }, body, } = req
     const updateTodo: ITodo | null = await Todo.findByIdAndUpdate(
@@ -55,7 +55,7 @@ const updateTodo =async (req:Request, res: Response): Promise<void> => {
    }
 }
 
-const deleteTodo =async (req:Request, res: Response): Promise<void> => {
+const deleteTodo = async (req:Request, res: Response): Promise<void> => {
    try{
 
     const deletedTodo: ITodo | null = await Todo.findByIdAndRemove(
